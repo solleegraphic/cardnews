@@ -1,0 +1,509 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frudia 재해석 — Lemonderma 프롬프트 18종</title>
+<meta name="description" content="@frudia.official 2026-06-02~08-11 전수 54장 분석 → 골격 6종 추출 → 세럼·크림·듀오 3세트 프롬프트와 생성 결과">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%8D%8B</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --fg:#16170f; --mut:#6b6f5c; --line:#e6e7dd;
+  --card:#fafaf5; --lime:#E6EE7A; --limeD:#8d9a1f; --code:#f4f5ec; --codefg:#2b2d20;
+  --frudia:#7a5cc4;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#111208; --fg:#eceee0; --mut:#9a9d89; --line:#2a2c1f;
+  --card:#191b10; --limeD:#cdd968; --code:#1c1e13; --codefg:#dfe2cf; --frudia:#a58fe0;
+}}
+:root[data-theme="dark"]{
+  --bg:#111208; --fg:#eceee0; --mut:#9a9d89; --line:#2a2c1f;
+  --card:#191b10; --limeD:#cdd968; --code:#1c1e13; --codefg:#dfe2cf; --frudia:#a58fe0;
+}
+:root[data-theme="light"]{
+  --bg:#ffffff; --fg:#16170f; --mut:#6b6f5c; --line:#e6e7dd;
+  --card:#fafaf5; --limeD:#8d9a1f; --code:#f4f5ec; --codefg:#2b2d20; --frudia:#7a5cc4;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:"Noto Sans KR",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  letter-spacing:-.04em;line-height:1.68;font-weight:400;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+code,pre{font-family:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:0}
+a{color:var(--limeD)}
+header{padding:72px 0 40px;border-bottom:1px solid var(--line)}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:500}
+h1{font-size:clamp(28px,5vw,44px);line-height:1.24;margin:14px 0 12px;font-weight:700}
+.sub{color:var(--mut);font-size:15px;max-width:62ch}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.pill{font-size:12px;padding:5px 11px;border:1px solid var(--line);border-radius:99px;color:var(--mut);background:var(--card)}
+h2{font-size:clamp(21px,3vw,27px);margin:64px 0 6px;font-weight:700;scroll-margin-top:20px}
+h2 .n{color:var(--limeD);font-weight:400;margin-right:10px}
+h3{font-size:18px;margin:38px 0 8px;font-weight:600}
+p{margin:10px 0}
+.lead{color:var(--mut);font-size:15px;margin-bottom:20px;max-width:70ch}
+table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;display:block;overflow-x:auto;white-space:nowrap}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--mut);font-weight:500;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin:18px 0}
+.grid img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:7px;border:1px solid var(--line);display:block;cursor:zoom-in;background:var(--card)}
+.dev{border:1px solid var(--line);border-radius:12px;padding:20px 22px;background:var(--card);margin:14px 0}
+.dev .tag{font-size:11px;letter-spacing:.1em;color:var(--limeD);font-weight:600}
+.dev h4{margin:6px 0 8px;font-size:17px;font-weight:600}
+.dev p{font-size:14px;color:var(--mut);margin:6px 0}
+.dev .why{color:var(--fg);font-size:14px;border-left:2px solid var(--lime);padding-left:12px;margin-top:12px}
+.cut{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:26px 0;background:var(--card)}
+.cut-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--line)}
+.cut-h .code{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;color:var(--limeD);letter-spacing:0}
+.cut-h .ttl{font-size:15px;font-weight:600}
+.cut-h .set{font-size:11px;padding:3px 9px;border-radius:99px;background:var(--lime);color:#16170f;font-weight:600}
+.cut-b{display:grid;grid-template-columns:340px 1fr;gap:0}
+@media(max-width:760px){.cut-b{grid-template-columns:1fr}}
+.cut-img{padding:20px;border-right:1px solid var(--line)}
+@media(max-width:760px){.cut-img{border-right:0;border-bottom:1px solid var(--line)}}
+.cut-img img{width:100%;border-radius:8px;display:block;cursor:zoom-in}
+.cut-p{padding:20px;min-width:0}
+pre{background:var(--code);color:var(--codefg);padding:15px 17px;border-radius:8px;
+  font-size:11.5px;line-height:1.66;overflow-x:auto;margin:0;white-space:pre;border:1px solid var(--line)}
+.copy{margin-top:14px;font-size:14px}
+.copy b{color:var(--limeD)}
+.note{margin-top:12px;font-size:13px;color:var(--mut);border-left:2px solid var(--line);padding-left:11px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+@media(max-width:640px){.cmp{grid-template-columns:1fr}}
+.cmp figure{margin:0}
+.cmp img{width:100%;border-radius:8px;border:1px solid var(--line);display:block;cursor:zoom-in}
+.cmp figcaption{font-size:12px;color:var(--mut);margin-top:7px}
+.cmp .l{font-weight:600;color:var(--frudia)}
+.cmp .r{font-weight:600;color:var(--limeD)}
+.qc td:first-child{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:0}
+.ok{color:var(--limeD);font-weight:600}
+.warn{color:#c98a1c;font-weight:600}
+@media (prefers-color-scheme:dark){.warn{color:#e0b354}}
+footer{margin:80px 0 60px;padding-top:26px;border-top:1px solid var(--line);color:var(--mut);font-size:13px}
+#lb{position:fixed;inset:0;background:rgba(8,9,4,.94);display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out;padding:24px}
+#lb img{max-width:100%;max-height:100%;border-radius:8px}
+.toggle{position:fixed;top:16px;right:16px;z-index:50;border:1px solid var(--line);background:var(--card);
+  color:var(--fg);border-radius:99px;padding:7px 14px;font-size:12px;cursor:pointer;font-family:inherit;letter-spacing:-.03em}
+</style></head><body>
+<button class="toggle" id="tg">◐ 테마</button>
+<div id="lb"><img id="lbi" alt=""></div>
+<div class="wrap">
+<header>
+  <div class="kicker">Lemonderma · 프롬프트 스터디 07</div>
+  <h1>Frudia 재해석 —<br>골격 6종 × 3세트 프롬프트 18</h1>
+  <p class="sub">@frudia.official 2026-06-02 ~ 08-11 게시글 <strong>20건 / 이미지 54장 전수</strong>를 관찰해 반복 작동한 시각 장치 6개를 뽑고, Lemonderma 잠금 블록을 걸어 세럼·크림·세럼+크림 3세트로 다시 썼다. 18컷 전부 실제로 생성해 결과를 함께 싣는다.</p>
+  <div class="meta">
+    <span class="pill">수집 2026-08-12 · Apify</span>
+    <span class="pill">생성 Nano Banana Pro</span>
+    <span class="pill">원본 54장 · 재해석 18컷</span>
+    <span class="pill">발행은 John 건별 승인</span>
+  </div>
+</header>
+
+<h2><span class="n">01</span>두 캠페인이 있었다</h2>
+<p class="lead">수집 구간은 한 캠페인이 아니라 두 개다. 골격이 서로 달라 나눠 읽어야 한다.</p>
+<table><thead><tr><th></th><th>A. HYDRA RECHARGE</th><th>B. F-LAB / RETINAL B3 EXO RED</th></tr></thead><tbody>
+<tr><td>기간</td><td>6/02 ~ 6/30 (8건)</td><td>7/13 ~ 8/11 (10건)</td></tr>
+<tr><td>제품</td><td>블루베리 히알루론 토너 500ml</td><td>레티날 B3 앰플 / 버블팩 부스터</td></tr>
+<tr><td>지배색</td><td>블루베리 퍼플 단색</td><td>레드 + 페일 블루-틸</td></tr>
+<tr><td>톤</td><td>임상 · 프로그램 · 측정</td><td>실험실 티저 · 기밀문서 · 기계</td></tr>
+<tr><td>최고 발명</td><td><strong>병에 WEEK 1–4 눈금</strong></td><td><strong>은박 TOP SECRET 파우치 티저</strong></td></tr>
+</tbody></table>
+<p class="lead">사이 구간(7/16 · 7/20 · 7/22)은 A→B 전환 티저 3연발이다 — 무드보드 콜라주 → 붉은 단색 로고판 → 문서 클로즈업. 캠페인 사이를 침묵으로 두지 않고 “다음이 온다”로 채운다.</p>
+<h2><span class="n">02</span>원본 전수 54장</h2><p class="lead">클릭하면 확대된다. 날짜 순.</p><div class="grid">
+<img src="img/frudia/2026-06-02_DZEJlk-D_4V_01.jpg" loading="lazy" alt="2026-06-02 DZEJlk-D">
+<img src="img/frudia/2026-06-02_DZEJlk-D_4V_02.jpg" loading="lazy" alt="2026-06-02 DZEJlk-D">
+<img src="img/frudia/2026-06-02_DZEJlk-D_4V_03.jpg" loading="lazy" alt="2026-06-02 DZEJlk-D">
+<img src="img/frudia/2026-06-02_DZEJlk-D_4V_04.jpg" loading="lazy" alt="2026-06-02 DZEJlk-D">
+<img src="img/frudia/2026-06-05_DZMRJ-8D9rU_01.jpg" loading="lazy" alt="2026-06-05 DZMRJ-8D9rU">
+<img src="img/frudia/2026-06-05_DZMRJ-8D9rU_02.jpg" loading="lazy" alt="2026-06-05 DZMRJ-8D9rU">
+<img src="img/frudia/2026-06-10_DZYscksj9fB_01.jpg" loading="lazy" alt="2026-06-10 DZYscksj9fB">
+<img src="img/frudia/2026-06-10_DZYscksj9fB_02.jpg" loading="lazy" alt="2026-06-10 DZYscksj9fB">
+<img src="img/frudia/2026-06-10_DZYscksj9fB_03.jpg" loading="lazy" alt="2026-06-10 DZYscksj9fB">
+<img src="img/frudia/2026-06-12_DZd2LEYD6lv_01.jpg" loading="lazy" alt="2026-06-12 DZd2LEYD6lv">
+<img src="img/frudia/2026-06-12_DZd2LEYD6lv_02.jpg" loading="lazy" alt="2026-06-12 DZd2LEYD6lv">
+<img src="img/frudia/2026-06-12_DZd2LEYD6lv_03.jpg" loading="lazy" alt="2026-06-12 DZd2LEYD6lv">
+<img src="img/frudia/2026-06-17_DZq258UDyoS_01.jpg" loading="lazy" alt="2026-06-17 DZq258UDyoS">
+<img src="img/frudia/2026-06-17_DZq258UDyoS_02.jpg" loading="lazy" alt="2026-06-17 DZq258UDyoS">
+<img src="img/frudia/2026-06-17_DZq258UDyoS_03.jpg" loading="lazy" alt="2026-06-17 DZq258UDyoS">
+<img src="img/frudia/2026-06-17_DZq258UDyoS_04.jpg" loading="lazy" alt="2026-06-17 DZq258UDyoS">
+<img src="img/frudia/2026-06-17_DZq258UDyoS_05.jpg" loading="lazy" alt="2026-06-17 DZq258UDyoS">
+<img src="img/frudia/2026-06-17_DZq258UDyoS_06.jpg" loading="lazy" alt="2026-06-17 DZq258UDyoS">
+<img src="img/frudia/2026-06-17_DZq258UDyoS_07.jpg" loading="lazy" alt="2026-06-17 DZq258UDyoS">
+<img src="img/frudia/2026-06-19_DZvxkk0D71j_01.jpg" loading="lazy" alt="2026-06-19 DZvxkk0D71j">
+<img src="img/frudia/2026-06-19_DZvxkk0D71j_02.jpg" loading="lazy" alt="2026-06-19 DZvxkk0D71j">
+<img src="img/frudia/2026-06-19_DZvxkk0D71j_03.jpg" loading="lazy" alt="2026-06-19 DZvxkk0D71j">
+<img src="img/frudia/2026-06-24_DZ8obsiDxIy_01.jpg" loading="lazy" alt="2026-06-24 DZ8obsiDxIy">
+<img src="img/frudia/2026-06-24_DZ8obsiDxIy_02.jpg" loading="lazy" alt="2026-06-24 DZ8obsiDxIy">
+<img src="img/frudia/2026-06-24_DZ8obsiDxIy_03.jpg" loading="lazy" alt="2026-06-24 DZ8obsiDxIy">
+<img src="img/frudia/2026-06-26_DaB_H3Hjz91_01.jpg" loading="lazy" alt="2026-06-26 DaB">
+<img src="img/frudia/2026-06-26_DaB_H3Hjz91_02.jpg" loading="lazy" alt="2026-06-26 DaB">
+<img src="img/frudia/2026-06-26_DaB_H3Hjz91_03.jpg" loading="lazy" alt="2026-06-26 DaB">
+<img src="img/frudia/2026-06-30_DaMHhB0Ap_S_01.jpg" loading="lazy" alt="2026-06-30 DaMHhB0Ap">
+<img src="img/frudia/2026-07-13_DauFiY7Dw69_01.jpg" loading="lazy" alt="2026-07-13 DauFiY7Dw69">
+<img src="img/frudia/2026-07-13_DauFiY7Dw69_02.jpg" loading="lazy" alt="2026-07-13 DauFiY7Dw69">
+<img src="img/frudia/2026-07-13_DauFiY7Dw69_03.jpg" loading="lazy" alt="2026-07-13 DauFiY7Dw69">
+<img src="img/frudia/2026-07-13_DauFiY7Dw69_04.jpg" loading="lazy" alt="2026-07-13 DauFiY7Dw69">
+<img src="img/frudia/2026-07-15_DazWubDESLd_01.jpg" loading="lazy" alt="2026-07-15 DazWubDESLd">
+<img src="img/frudia/2026-07-15_DazWubDESLd_02.jpg" loading="lazy" alt="2026-07-15 DazWubDESLd">
+<img src="img/frudia/2026-07-16_Da1lElnAQBG_01.jpg" loading="lazy" alt="2026-07-16 Da1lElnAQBG">
+<img src="img/frudia/2026-07-20_Da_zQ0UABPn_01.jpg" loading="lazy" alt="2026-07-20 Da">
+<img src="img/frudia/2026-07-22_DbE5H2XAGHI_01.jpg" loading="lazy" alt="2026-07-22 DbE5H2XAGHI">
+<img src="img/frudia/2026-07-24_DbJ6KrFjxV-_01.jpg" loading="lazy" alt="2026-07-24 DbJ6KrFjxV-">
+<img src="img/frudia/2026-07-24_DbJ6KrFjxV-_02.jpg" loading="lazy" alt="2026-07-24 DbJ6KrFjxV-">
+<img src="img/frudia/2026-07-27_DbR3GTLj_VY_01.jpg" loading="lazy" alt="2026-07-27 DbR3GTLj">
+<img src="img/frudia/2026-07-27_DbR3GTLj_VY_02.jpg" loading="lazy" alt="2026-07-27 DbR3GTLj">
+<img src="img/frudia/2026-07-27_DbR3GTLj_VY_03.jpg" loading="lazy" alt="2026-07-27 DbR3GTLj">
+<img src="img/frudia/2026-07-29_DbW-e-bgtw1_01.jpg" loading="lazy" alt="2026-07-29 DbW-e-bgtw1">
+<img src="img/frudia/2026-07-31_DbcH84MjzWl_01.jpg" loading="lazy" alt="2026-07-31 DbcH84MjzWl">
+<img src="img/frudia/2026-07-31_DbcH84MjzWl_02.jpg" loading="lazy" alt="2026-07-31 DbcH84MjzWl">
+<img src="img/frudia/2026-07-31_DbcH84MjzWl_03.jpg" loading="lazy" alt="2026-07-31 DbcH84MjzWl">
+<img src="img/frudia/2026-07-31_DbcH84MjzWl_04.jpg" loading="lazy" alt="2026-07-31 DbcH84MjzWl">
+<img src="img/frudia/2026-08-07_DbuHoZDD9JZ_01.jpg" loading="lazy" alt="2026-08-07 DbuHoZDD9JZ">
+<img src="img/frudia/2026-08-07_DbuHoZDD9JZ_02.jpg" loading="lazy" alt="2026-08-07 DbuHoZDD9JZ">
+<img src="img/frudia/2026-08-07_DbuHoZDD9JZ_03.jpg" loading="lazy" alt="2026-08-07 DbuHoZDD9JZ">
+<img src="img/frudia/2026-08-11_Db4csNfDzCU_01.jpg" loading="lazy" alt="2026-08-11 Db4csNfDzCU">
+<img src="img/frudia/2026-08-11_Db4csNfDzCU_02.jpg" loading="lazy" alt="2026-08-11 Db4csNfDzCU">
+<img src="img/frudia/2026-08-11_Db4csNfDzCU_03.jpg" loading="lazy" alt="2026-08-11 Db4csNfDzCU">
+</div>
+<h2><span class="n">03</span>골격 6종 — 무엇을 훔칠 것인가</h2><p class="lead">전수 대조에서 <strong>반복해서 작동한</strong> 장치만 추렸다. 1회성 연출은 뺐다.</p>
+<div class="dev"><div class="tag">D1</div><h4>제품을 자(尺)로 쓴다 — WEEK 1–4 눈금</h4><p>가장 강한 발명. 병 옆면에 <code>WEEK 1 / 2 / 3 / 4</code> 눈금선을 새겨, <strong>제품 잔량 = 프로그램 진도</strong>로 읽히게 했다. 6/17 게시글은 이 눈금 한 칸씩을 7장 캐러셀로 풀어 한 게시글 전체를 만들었다.</p><div class="why">왜 먹히나 — &quot;얼마나 남았나&quot;라는 <strong>이미 하고 있는 행동</strong>에 서사를 얹었다. 새 습관을 요구하지 않는다.</div></div>
+<div class="dev"><div class="tag">D2</div><h4>백라이트 실루엣 손 × 실험실 글라스웨어</h4><p>손은 거의 검은 실루엣이고, 페트리 접시·시린지·비커가 함께 온다. 손이 주인공이 아니라 <strong>프레임</strong>이다.</p><div class="why">왜 먹히나 — 모델 캐스팅 없이 &quot;사람이 다룬다&quot;를 확보하면서, 인종·연령 논란을 우회한다. 동시에 글라스웨어가 더마를 증명한다.</div></div>
+<div class="dev"><div class="tag">D3</div><h4>원컬러 극단 매크로</h4><p>병 표면 물방울, 라벨 일부 크롭, 제형 단면. 화면의 90%가 한 색. 배경도 그 색의 옅은 버전.</p><div class="why">왜 먹히나 — 피드에서 <strong>썸네일 단계에 색으로 식별</strong>된다. 로고를 못 읽어도 브랜드가 읽힌다.</div></div>
+<div class="dev"><div class="tag">D4</div><h4>실루엣 정물 방정식</h4><p><code>F-Origin(과일) + F-Lab(글라스웨어) = Fruit-ceutical(제품)</code> 3연작. 완전 검정 컷아웃 오브제를 페일 그라디언트 배경에 세우고, 하단에 눈금자 같은 tick mark와 캡션.</p><div class="why">왜 먹히나 — 브랜드 명제를 <strong>문장이 아니라 수식</strong>으로 보여준다. 읽지 않아도 이해된다.</div></div>
+<div class="dev"><div class="tag">D5</div><h4>데이터 슬라이드 — 숫자만 크고 서체는 얇다</h4><p><code>+15% Smoother</code> <code>-46% Less Flakiness</code> <code>+58% Hydration</code> <code>+100%</code>. 큰 숫자 + 얇은 라이트 그레이 산세리프 + before/after 원형 마이크로 사진. - ⚠️ 우리 이식 제한: 임상 수치는 <strong>Amazon PDP·A+만 허용, Meta 광고 사용 금지</strong>(products.md §하지 말 것). 그래서 이 골격은 <strong>숫자를 나중에 얹을 수 있는 여백 있는 베이스컷</strong>으로만 생성한다.</p></div>
+<div class="dev"><div class="tag">D6</div><h4>인물 클로즈업 × 제형을 그래픽으로</h4><p>뺨에 제형을 붓자국처럼 얹거나(핑크 드립), 얼굴 옆에 얇은 와이어를 세워 &quot;측정 중&quot; 기호를 만든다. 배경은 제품색의 파스텔.</p><div class="why">왜 먹히나 — 뷰티 인물컷의 관성(웃는 얼굴·완벽한 피부)을 깨고 <strong>제형이 주인공</strong>이 된다.</div></div>
+<h3>훔치지 않은 것</h3>
+<div class="dev"><p>🚫 <strong>은박 TOP SECRET 티저</strong> — 기밀·기업문서 코드는 <em>Premium Gentle Science</em> 톤과 충돌한다. 우리는 감추는 브랜드가 아니다.</p>
+<p>🚫 <strong>완전 검정 배경 드라마틱 스팟광</strong>(6/19 · 6/24) — LIGHT LOCK 위반. 강한 대비는 “세기가 아니라 전달” 명제를 깬다.</p>
+<p>🚫 <strong>Frudia의 보라 · 레드 팔레트</strong> — 라임으로 치환.</p></div>
+<h2><span class="n">04</span>이식 함정 — 라임에만 있는 것</h2>
+<p class="lead">Frudia는 제품색 = 화면색 원컬러 전략이고 우리도 그대로 간다. 단 라임에는 퍼플·레드에 없는 함정이 둘 있다.</p>
+<table><thead><tr><th>함정</th><th>증상</th><th>처방</th></tr></thead><tbody>
+<tr><td><strong>라임 + 크림 = 뭉침</strong></td><td>#E6EE7A와 #FEFCD0은 명도·색상이 가까워 한 화면에 두면 단색 덩어리로 보인다</td><td>원컬러 컷의 배경은 흰색·연회색으로. 크림색은 조판·여백에서만</td></tr>
+<tr><td><strong>반사면이 라임을 골드로 되쏨</strong></td><td>유리·금속이 있으면 병이 웜 옐로우로 밀린다 (2026-08-05 실측: 8장 중 2장)</td><td>글라스웨어가 들어가는 D2·D4에는 반사 중립화 문장 필수</td></tr>
+</tbody></table>
+<h2><span class="n">05</span>프롬프트 18종 + 생성 결과</h2><p class="lead">각 컷은 <code>[LOCK 0 제품고정]</code> → <code>[장면]</code> → <code>[LOCK 1~5]</code> 순서. LOCK 0은 반드시 맨 앞에 온다. 레퍼런스는 <strong>제품컷 + 제형컷 2장 필수</strong> — 한 장만 넣으면 AI가 가짜 브랜드 라벨을 지어낸다.</p>
+<h3>D1 · 제품을 자(尺)로 쓴다 — WEEK 1–4 눈금</h3>
+<div class="cut"><div class="cut-h"><span class="code">S-1</span><span class="set">세럼</span><span class="ttl">28일 진도자</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/S-1_serum-ruler.jpg' loading='lazy' alt='S-1'></div>
+<div class="cut-p"><pre>[LOCK 0-S]
+
+A clean editorial product photograph, straight-on eye-level, of the frosted
+lime-yellow airless pump bottle standing alone on a seamless white sweep.
+Immediately beside the bottle, standing upright and parallel to it, is a thin
+uncoated-paper measuring strip the same height as the bottle, printed with four
+faint horizontal tick marks and the small dark labels &quot;DAY 1&quot;, &quot;DAY 7&quot;, &quot;DAY 14&quot;,
+&quot;DAY 28&quot; reading from top to bottom. The strip is plain matte card, no colour, no
+graphics — a laboratory ruler, not a poster. Generous empty space above the bottle
+for later typesetting.
+
+[LOCK-TAIL]</pre>
+<div class="copy"><b>얹을 카피</b> — <code>28 days. One bottle. One routine.</code> — 한글: <em>28일. 한 병. 하나의 루틴.</em></div>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">C-1</span><span class="set">크림</span><span class="ttl">잔량 = 진도</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/C-1_cream-ruler.jpg' loading='lazy' alt='C-1'></div>
+<div class="cut-p"><pre>[LOCK 0-C]
+
+A clean editorial product photograph, high-angle looking straight down at 90°,
+of the frosted lime-yellow cream jar with its lid removed and resting beside it,
+face down, on a seamless white sweep. The jar is open and the pale ivory balm
+inside has been used down to about two thirds, leaving a soft crescent-shaped
+depression with a real fingertip swipe mark and slightly uneven edges. A thin
+uncoated-paper measuring strip lies flat to the right of the jar, printed with
+four faint tick marks labelled &quot;DAY 1&quot;, &quot;DAY 7&quot;, &quot;DAY 14&quot;, &quot;DAY 28&quot;. Generous
+empty space at the top of the frame.
+
+[LOCK-TAIL]</pre>
+<div class="copy"><b>얹을 카피</b> — <code>You can see how far you are.</code> — 한글: <em>어디까지 왔는지 눈으로 보인다.</em></div>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">D-1</span><span class="set">세럼 + 크림</span><span class="ttl">2-step 진도</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/D-1_duo-ruler.jpg' loading='lazy' alt='D-1'></div>
+<div class="cut-p"><pre>[LOCK 0-D]
+
+A clean editorial product photograph, straight-on eye-level, of the tall frosted
+lime-yellow serum bottle and the low wide cream jar standing side by side on a
+seamless white sweep, the bottle on the left, the jar on the right, separated by
+about one jar-width of empty space. Behind and between them, a thin uncoated-paper
+measuring strip stands upright, printed with two faint labels — &quot;STEP 1 OPEN&quot;
+aligned with the bottle and &quot;STEP 2 SEAL&quot; aligned with the jar. Plain matte card,
+no colour. Generous empty space above.
+
+[LOCK-TAIL]</pre>
+<div class="copy"><b>얹을 카피</b> — <code>One opens. One seals.</code> — 한글: <em>하나는 열고, 하나는 잠근다.</em></div>
+</div></div></div>
+<h3>D2 · 백라이트 실루엣 손 × 실험실 글라스웨어</h3>
+<div class="cut"><div class="cut-h"><span class="code">S-2</span><span class="set">세럼</span><span class="ttl">페트리 접시 위 마이크로크리스탈</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/S-2_serum-hands.jpg' loading='lazy' alt='S-2'></div>
+<div class="cut-p"><pre>[LOCK 0-S]
+
+A pair of hands, seen from the back and rendered as a soft mid-tone silhouette
+against a bright pale-grey background, gently supports a shallow clear glass petri
+dish at chest height. Inside the dish, a thin pool of the clear serum gel spreads
+out, and the tiny white micro-crystal particles are clearly visible suspended in
+it, scattered unevenly like fine sediment. The frosted lime-yellow bottle stands
+out of focus in the background at the lower right. Hands are backlit but never
+fully black — the skin keeps its form and a trace of texture.
+
+REALISM LOCK: realistic skin texture and true-to-life details on the hands —
+visible knuckle creases, fine hairs, natural nail shape, no over-retouched plastic
+skin. Count the particles as scatter, not a uniform field: a denser cluster near
+the centre, a few isolated specks toward the rim.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">C-2</span><span class="set">크림</span><span class="ttl">손등 위 발림</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/C-2_cream-hands.jpg' loading='lazy' alt='C-2'></div>
+<div class="cut-p"><pre>[LOCK 0-C]
+
+A single hand, seen from above at a slight angle and rendered as a soft mid-tone
+silhouette against a bright pale-grey background, rests palm-down. On the back of
+the hand sits one rounded scoop of the translucent pale ivory balm, half-spread
+into a short glossy swipe with rounded edges and a soft yellow-green tint at the
+thickest part. A shallow clear glass petri dish sits just behind the hand, empty
+and catching a neutral grey-white reflection. The frosted lime-yellow jar stands
+out of focus at the upper left, lid off.
+
+REALISM LOCK: realistic skin texture — visible pores, fine hairs, natural knuckle
+creases, a faint sheen where the balm has already absorbed. No plastic CGI skin.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">D-2</span><span class="set">세럼 + 크림</span><span class="ttl">두 접시, 두 제형</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/D-2_duo-hands.jpg' loading='lazy' alt='D-2'></div>
+<div class="cut-p"><pre>[LOCK 0-D]
+
+Two hands, rendered as soft mid-tone silhouettes against a bright pale-grey
+background, each hold one shallow clear glass petri dish at the same height, side
+by side. The left dish holds a thin pool of the clear serum gel with visible tiny
+white micro-crystal particles. The right dish holds one rounded scoop of the
+translucent pale ivory balm, glossy, with a soft yellow-green edge tint. The two
+textures are clearly different from each other and neither is white whipped cream.
+Behind them, both products stand out of focus — the tall bottle behind the left
+dish, the low wide jar behind the right.
+
+[LOCK-TAIL]</pre>
+<div class="copy"><b>얹을 카피</b> — <code>Two textures. One pathway.</code> — 한글: <em>두 개의 제형, 하나의 통로.</em></div>
+</div></div></div>
+<h3>D3 · 원컬러 극단 매크로</h3>
+<div class="cut"><div class="cut-h"><span class="code">S-3</span><span class="set">세럼</span><span class="ttl">곡면 가장자리 결로</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/S-3_serum-macro.jpg' loading='lazy' alt='S-3'></div>
+<div class="cut-p"><pre>[LOCK 0-S]
+
+An extreme macro photograph of the frosted lime-yellow bottle&#x27;s curved shoulder,
+filling about 85% of the frame, shot from very close with a shallow depth of
+field. The lime reads at its most saturated along the curved edge where the
+frosted wall is thickest, fading to near-white where the surface turns toward the
+camera. Fine condensation clings to the surface — count them: one large rounded
+droplet with a visible meniscus near the upper edge, two medium droplets slightly
+stretched by gravity below it, and a scatter of fine mist between. A sliver of the
+matte lime overcap enters the top of the frame. The background is clean white,
+thrown completely out of focus.
+
+REALISM LOCK: the droplets look real and imperfect — slight asymmetry, varied
+size, a tiny internal micro-bubble in the largest one, caught mid-motion.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">C-3</span><span class="set">크림</span><span class="ttl">제형 단면 매크로</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/C-3_cream-macro.jpg' loading='lazy' alt='C-3'></div>
+<div class="cut-p"><pre>[LOCK 0-C]
+
+An extreme macro photograph looking straight down at the open frosted lime-yellow
+jar, cropped so the jar rim runs diagonally across the frame and the balm surface
+fills about 80% of it. A single clean swipe has been taken through the balm with a
+fingertip, cutting a groove that reveals the translucent pale ivory body and its
+soft yellow-green edge tint where the material is thickest. The cut edges are
+rounded and glossy, not sharp. Shallow depth of field, focus on the cut edge.
+Background clean white, out of focus.
+
+REALISM LOCK: the swipe is real and imperfect — one edge slightly higher than the
+other, a small ridge of balm pushed up at the end of the stroke, tiny internal
+micro-bubbles. Not a perfectly symmetrical CGI groove.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">D-3</span><span class="set">세럼 + 크림</span><span class="ttl">두 제형이 만나는 경계</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/D-3_duo-macro.jpg' loading='lazy' alt='D-3'></div>
+<div class="cut-p"><pre>[LOCK 0-D]
+
+An extreme macro photograph, straight down, of a clean white glass surface on
+which two textures have been placed side by side and pushed until they just touch
+along a single soft boundary line running vertically through the centre of the
+frame. On the left, the clear translucent serum gel with visible tiny white
+micro-crystal particles suspended inside. On the right, the translucent pale ivory
+balm with its soft yellow-green edge tint, thicker and holding its own shape.
+Neither has mixed into the other — the boundary is a meniscus, not a blend.
+Shallow depth of field, focus exactly on the boundary.
+
+REALISM LOCK: real and imperfect — the boundary line wavers slightly, a few
+particles from the left side have drifted toward it, tiny micro-bubbles in both.
+
+[LOCK-TAIL]</pre>
+<div class="copy"><b>얹을 카피</b> — <code>Open, then seal. Never blended.</code> — 한글: <em>열고, 그 다음 잠근다. 섞지 않는다.</em></div>
+</div></div></div>
+<h3>D4 · 실루엣 정물 방정식</h3>
+<div class="cut"><div class="cut-h"><span class="code">S-4</span><span class="set">세럼</span><span class="ttl">Lemon + Exosome = Serum</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/S-4_serum-equation.jpg' loading='lazy' alt='S-4'></div>
+<div class="cut-p"><pre>[LOCK 0-S]
+
+A minimalist still-life triptych panel, one of three, shot straight-on at
+eye-level against a smooth pale neutral-grey gradient backdrop that lightens
+toward the centre. Three objects stand in a row on a pale reflective surface,
+evenly spaced: on the left, a whole lemon rendered as a flat matte dark
+charcoal silhouette; in the centre, a clear laboratory Erlenmeyer flask, empty and
+catching only neutral grey-white light; on the right, the frosted lime-yellow serum
+bottle — the ONLY object in full colour, sharp and correctly lit. Along the very
+bottom of the frame runs a row of fine evenly spaced vertical tick marks like a
+ruler, in thin light grey. Each object casts one soft reflection on the surface
+below it.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">C-4</span><span class="set">크림</span><span class="ttl">Barrier 방정식</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/C-4_cream-equation.jpg' loading='lazy' alt='C-4'></div>
+<div class="cut-p"><pre>[LOCK 0-C]
+
+A minimalist still-life triptych panel against a smooth pale neutral-grey gradient
+backdrop that lightens toward the centre. Three objects stand in a row on a pale
+reflective surface: on the left, a single ceramide-like flat disc — a plain matte
+dark charcoal silhouette of a smooth round tile; in the centre, a clear laboratory
+watch glass resting on a low stand, empty, catching only neutral grey-white light;
+on the right, the frosted lime-yellow cream jar with its lid on — the ONLY object
+in full colour, sharp and correctly lit. A row of fine light-grey vertical tick
+marks runs along the bottom edge.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">D-4</span><span class="set">세럼 + 크림</span><span class="ttl">두 단계가 한 시스템</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/D-4_duo-equation.jpg' loading='lazy' alt='D-4'></div>
+<div class="cut-p"><pre>[LOCK 0-D]
+
+A minimalist still-life panel against a smooth pale neutral-grey gradient backdrop.
+On a pale reflective surface stand four objects in a row, evenly spaced: a whole
+lemon as a flat matte dark charcoal silhouette; the frosted lime-yellow serum
+bottle in full colour; a clear empty laboratory beaker catching only neutral
+grey-white light; and the frosted lime-yellow cream jar in full colour. Only the
+two products are in colour — the lemon and the glassware stay silhouette and
+clear. A row of fine light-grey vertical tick marks runs along the bottom edge.
+The two products are visibly the same material and the same family.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<h3>D5 · 데이터 슬라이드 — 숫자만 크고 서체는 얇다</h3>
+<div class="cut"><div class="cut-h"><span class="code">S-5</span><span class="set">세럼</span><span class="ttl">상단 40% 비움</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/S-5_serum-base.jpg' loading='lazy' alt='S-5'></div>
+<div class="cut-p"><pre>[LOCK 0-S]
+
+A clean editorial product photograph in 4:5, composed so the upper 40% of the
+frame is completely empty seamless white with nothing in it — reserved for
+typesetting. In the lower portion, the frosted lime-yellow serum bottle lies on
+its side on a plain white plaster block, angled about 20° from horizontal, cap
+toward the lower left. Two small clear glass sample discs sit flat beside it, each
+holding a thin film of the clear serum gel with visible white micro-crystal
+particles. One soft shadow falls to camera-left. Nothing crosses into the upper
+40%.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">C-5</span><span class="set">크림</span><span class="ttl">좌측 절반 비움</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/C-5_cream-base.jpg' loading='lazy' alt='C-5'></div>
+<div class="cut-p"><pre>[LOCK 0-C]
+
+A clean editorial product photograph in 4:5, composed so the entire left half of
+the frame is empty seamless white — reserved for typesetting. On the right half,
+the frosted lime-yellow cream jar stands upright with its lid resting against its
+base, three-quarter view, on a plain white plaster block. Beside it, one small
+rounded scoop of the translucent pale ivory balm sits directly on the block,
+holding its shape with a soft glossy top and yellow-green edge tint. One soft
+shadow falls to camera-left. Nothing crosses the vertical midline.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">D-5</span><span class="set">세럼 + 크림</span><span class="ttl">하단 35% 비움</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/D-5_duo-base.jpg' loading='lazy' alt='D-5'></div>
+<div class="cut-p"><pre>[LOCK 0-D]
+
+A clean editorial product photograph in 4:5, composed so the lower 35% of the
+frame is completely empty seamless white — reserved for a row of three statistics.
+In the upper portion, the tall frosted lime-yellow serum bottle and the low wide
+cream jar stand together on a plain white plaster shelf, the bottle slightly
+behind and to the left, the jar in front and to the right, overlapping by about a
+third. One soft shadow falls to camera-left. Nothing crosses into the lower 35%.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<h3>D6 · 인물 클로즈업 × 제형을 그래픽으로</h3>
+<div class="cut"><div class="cut-h"><span class="code">S-6</span><span class="set">세럼</span><span class="ttl">뺨 위 미흡수 제형</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/S-6_serum-face.jpg' loading='lazy' alt='S-6'></div>
+<div class="cut-p"><pre>[LOCK 0-S]
+
+A tight three-quarter close-up of a woman&#x27;s face, cropped from just above the brow
+to the collarbone, against a seamless clean white background. She looks slightly
+past the camera, calm, not smiling. On her cheekbone sit three short strokes of
+the clear serum gel, freshly applied and not yet absorbed, sitting on top of the
+skin with a wet sheen and visible white micro-crystal particles catching the
+light. Her fingertip is still near the last stroke. The frosted lime-yellow bottle
+is held loosely in her other hand at the bottom edge of the frame, partly cropped.
+
+REALISM LOCK: realistic skin texture and true-to-life details — visible pores,
+fine facial hairs, subtle micro-blemishes, natural skin sheen, faint natural
+under-eye shadow. No over-retouched plastic skin, no CGI look. The strokes are
+uneven in length and thickness, like a real hand made them.
+
+[LOCK-TAIL]</pre>
+<div class="note">캐스팅 주: 인종·연령 지정을 프롬프트에 넣지 않았다. 캠페인 타깃이 확정되면 그때 한 줄 추가한다. 얼굴 일관성이 필요하면 MJ 말고 <strong>Higgsfield</strong>로 (brand-prompt-dna.md §3).</div>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">C-6</span><span class="set">크림</span><span class="ttl">마무리 단계</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/C-6_cream-face.jpg' loading='lazy' alt='C-6'></div>
+<div class="cut-p"><pre>[LOCK 0-C]
+
+A tight close-up of a woman&#x27;s face in profile, cropped from the temple to the
+jaw, against a seamless clean white background. Her eyes are closed and her
+expression is at rest. She presses the flat of her fingers against her cheek in a
+gentle patting motion, the last step of a routine. A thin film of the translucent
+pale ivory balm is still visible where it has not fully absorbed, along the
+cheekbone and jawline, giving a soft satin sheen rather than a wet shine. The
+frosted lime-yellow jar sits out of focus in the foreground at the lower edge, lid
+off.
+
+REALISM LOCK: realistic skin texture — visible pores, fine facial hairs, subtle
+micro-blemishes, a few flyaway hairs at the temple. No plastic CGI skin.
+
+[LOCK-TAIL]</pre>
+</div></div></div>
+<div class="cut"><div class="cut-h"><span class="code">D-6</span><span class="set">세럼 + 크림</span><span class="ttl">한 얼굴, 두 단계</span></div><div class="cut-b">
+<div class="cut-img"><img src='img/ours/D-6_duo-face.jpg' loading='lazy' alt='D-6'></div>
+<div class="cut-p"><pre>[LOCK 0-D]
+
+A tight straight-on close-up of a woman&#x27;s face, cropped from the brow to the
+collarbone, against a seamless clean white background, split by lighting rather
+than by a line: the camera-left side of her face is very slightly cooler and the
+camera-right very slightly warmer, both still soft and diffused, with no hard
+edge between them. On her left cheek sit two short strokes of the clear serum gel,
+wet and unabsorbed, white micro-crystal particles visible. On her right cheek, a
+thin film of the translucent pale ivory balm has almost fully absorbed, leaving a
+soft satin sheen. Both products rest out of focus at the bottom edge, the bottle
+on the left, the jar on the right.
+
+REALISM LOCK: realistic skin texture and true-to-life details — visible pores,
+fine facial hairs, subtle micro-blemishes, natural asymmetry between the two sides
+of the face. No over-retouched plastic skin.
+
+[LOCK-TAIL]</pre>
+<div class="copy"><b>얹을 카피</b> — <code>Left: just opened. Right: sealed.</code> — 한글: <em>왼쪽은 막 열린 피부, 오른쪽은 잠긴 피부.</em></div>
+<div class="note">⚠️ 이 컷은 <strong>한 얼굴 좌우 비교</strong>라 B&amp;A로 읽힐 수 있다. 조명 차이만으로 나누고 피부 상태 차이를 연출하지 않았다 — 거울식 대칭 분할 금지(playbook §B&amp;A 광고 구도)와 회색 탈색 금지를 둘 다 피하기 위한 설계다.</div>
+</div></div></div>
+<footer>
+<p><strong>Lemonderma · 제품성장팀 디자인</strong> — 정본은 GitHub 저장소 <code>30_growth/design/07) 프롬프트 스터디/frudia-재해석.md</code>. 이 페이지는 공유용 미러다.</p>
+<p>AI 생성 소재는 <strong>제작은 자유, 발행은 John 건별 승인</strong>(2026-07-28 결정). 임상 수치는 Amazon PDP·A+ 전용이며 Meta 광고에는 사용하지 않는다.</p>
+<p>수집 2026-08-12 · 생성 Nano Banana Pro (imagen-nano-banana-2) · 페이지 빌드 2026-08-12</p>
+</footer></div>
+<script>
+var r=document.documentElement, tg=document.getElementById('tg');
+tg.onclick=function(){var d=(r.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+ r.setAttribute('data-theme', d==='dark'?'light':'dark');};
+var lb=document.getElementById('lb'), lbi=document.getElementById('lbi');
+document.addEventListener('click',function(e){
+ if(e.target.tagName==='IMG' && e.target.id!=='lbi'){lbi.src=e.target.src;lb.style.display='flex';}
+ else if(e.target===lb||e.target===lbi){lb.style.display='none';}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.style.display='none';});
+</script></body></html>
