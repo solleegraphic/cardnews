@@ -2,6 +2,7 @@
 
 Claude 아티팩트 16MB 한도를 넘긴 이미지 무거운 산출물을 올리는 곳.
 
+- **[Frudia 6월 전수 → 누끼컷 연출컷 (NB2 · 2026-09-03)](https://solleegraphic.github.io/cardnews/frudia-june.html)** — 정지 29 + 영상 5 전수 분석, 프롬프트 84편, 세럼·크림 54장 + QC. 최상단 신규.
 - **[프롬프트 스터디 — 전권](https://solleegraphic.github.io/cardnews/)** — 아티팩트에서 통째로 이사(2026-08-12). CASE·CAMPAIGN·ALPHA·OMATCHA에 이어 FRUDIA 01~06 + CSHADES·MIIKKO·ANELO·VAYEN 카드 추가.
 - **[Frudia 재해석 상세](https://solleegraphic.github.io/cardnews/frudia.html)** — 원본 54장 갤러리 + 프롬프트 18종 전문.
 
